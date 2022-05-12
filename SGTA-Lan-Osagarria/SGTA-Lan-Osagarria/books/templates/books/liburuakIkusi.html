@@ -1,0 +1,58 @@
+<head>
+    <style>
+        book_taula {
+            border-collapse: collapse;
+        }
+        book_taula td, book_taula th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        book_taula tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        book_taula tr:hover {
+            background-color: #ddd;
+        }
+        book_taula th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+{% extends 'books/index.html' %}
+
+{% block content %}
+    <h1>Liburuak Ikusi</h1>
+    
+    <table id="book_taula">
+        <thead>
+            <tr>
+                <th>book</th>
+                <th>title</th>
+                <th>author</th>
+                <th>last</th>
+                <th>first</th>
+                <th>editor</th>
+                <th>publisher</th>
+                <th>price</th>
+            </tr>
+        </thead>
+    <tbody>
+        {% for lib in liburuak %}
+        <tr>
+            <td>{{ lib.book }}</td>
+            <td>{{ lib.title }}</td>
+            <td>{{ lib.author }}</td>
+            <td>{{ lib.last }}</td>
+            <td>{{ lib.first }}</td>
+            <td>{{ lib.editor }}</td>
+            <td>{{ lib.publisher }}</td>
+            <td>{{ lib.price }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

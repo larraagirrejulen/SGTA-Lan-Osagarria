@@ -1,9 +1,39 @@
 <html>
-<head><title></title></head>
+        <head>
+            <title>Lan Osagarria</title>
+                <style>
+                .title {
+                    color: forestgreen;
+                }
+                #sidebar, #edukia {
+                    display: inline-block;
+                }
+                #edukia {
+                    margin-left: 10em;
+                }
+            </style>
+        </head>
 
 <body>
-
-{{ content }}
-
+    <h1></h1>
+    <h1 id="title" class="title">Django + XQUERY</h1>
+    <div id="sidebar">
+       
+        <h3>Aukerak</h3>
+        
+            {% block estekak %}
+            <ul>
+                <li><a href="../liburuakIkusi/">Liburu guztiak ikusi</a></li>
+                <li><a href="../liburuakSortu/">Liburua sortu</a></li>
+            </ul>
+            {% endblock %}
+       
+       
+    </div>
+    
+    <div id="edukia">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 </html>

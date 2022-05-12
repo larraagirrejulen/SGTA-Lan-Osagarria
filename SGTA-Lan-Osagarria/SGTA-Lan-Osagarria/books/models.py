@@ -2,8 +2,17 @@ from django.db import models
 
 
 class Book(models.Model):
-    isbn = models.IntegerField()
-    izena = models.CharField(max_length=60)
 
-    def __unicode__(self):
-        return self.izena
+    book=models.CharField(max_length=255)
+    year=models.CharField(max_length=255)
+    title=models.CharField(max_length=255)
+    author=models.CharField(max_length=255)
+    last=models.CharField(max_length=255)
+    first=models.CharField(max_length=255)
+    editor=models.CharField(max_length=255)
+    #affiliation=models.CharField(max_length=255)
+    publisher=models.CharField(max_length=255)
+    price=models.FloatField()
+
+    def __str__(self):
+        return self.book

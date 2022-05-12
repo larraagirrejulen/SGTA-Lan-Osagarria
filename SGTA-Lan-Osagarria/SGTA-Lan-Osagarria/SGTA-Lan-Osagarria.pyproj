@@ -47,6 +47,8 @@
     <Compile Include="SGTA_Lan_Osagarria\wsgi.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="books\templates\books\liburuakSortu.html" />
+    <Content Include="books\templates\books\liburuakIkusi.html" />
     <Content Include="books\templates\books\index.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
