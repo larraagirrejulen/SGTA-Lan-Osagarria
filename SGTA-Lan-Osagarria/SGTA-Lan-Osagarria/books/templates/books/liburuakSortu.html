@@ -2,4 +2,53 @@
 
 {% block content %}
     <h1>Liburuak sortu</h1>
+    <form method="POST">
+        <div class="liburua_sortu">
+            <table id="book_taula">
+                <tbody>
+                    <tr>
+                        <td><label class="form-label">Title</label></td>
+                        <td><input class="form-control" type="text" name="title"></input></td>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Year</label></td>
+                        <td><input class="form-control" type="date" name="year"></input></td>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Last</label></td>
+                        <td><input class="form-control" type="text" name="last"></input></td>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">First</label></td>
+                        <td><input class="form-control" type="text" name="first"></input></td>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Editor</label></td>
+                        <td><input class="form-control" type="text" name="editor"></input></td>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Publisher</label></td>
+                        <td>
+                            <select class="form-control" name="publisher">
+                                <option value="Addison-Wesley" SELECTED>Addison-Wesley</option>
+                                <option value="Morgan Kaufmann Publishers">Morgan Kaufmann Publishers</option>
+                                <option value="Kluwer Academic Publishers">Kluwer Academic Publishers</option>
+                                <option value="Springer-Verlag">Springer-Verlag</option>
+                                <option value="DslBook">DslBook</option>
+                                <option value="Associated Publishers">Associated Publishers</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label class="form-label">Price</label></td>
+                        <td><input class="form-control" type="number" name="price"></input></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            {% csrf_token %}
+            <button class="liburua_sortu btn btn-success" type="submit">Sortu liburua</button>
+        </div>
+    </form>
+    {% include 'books/messages.html' %}
 {% endblock %}

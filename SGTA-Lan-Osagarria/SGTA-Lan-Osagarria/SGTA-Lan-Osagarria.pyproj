@@ -32,6 +32,9 @@
   <ItemGroup>
     <Compile Include="books\admin.py" />
     <Compile Include="books\apps.py" />
+    <Compile Include="books\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="books\migrations\__init__.py" />
     <Compile Include="books\models.py" />
     <Compile Include="books\tests.py" />
@@ -50,6 +53,12 @@
     <Content Include="books\templates\books\liburuakSortu.html" />
     <Content Include="books\templates\books\liburuakIkusi.html" />
     <Content Include="books\templates\books\index.html" />
+    <Content Include="books\templates\books\menua.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="books\templates\books\messages.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
