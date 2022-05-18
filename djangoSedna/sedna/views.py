@@ -2,9 +2,7 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-
-# Create your views here.
-from django.http import HttpResponse
+from django.contrib import messages
 
 from zif.sedna import protocol
 import sys
@@ -12,35 +10,39 @@ import logging
 
 
 def index(request):
-    username = 'SYSTEM'
-    password = 'MANAGER'
-    database = 'db'
-    port = 5050
-    host = 'localhost'
+    output = "Emaitza: \n"
+    if request.method == "POST":
+        try:
+            username = 'SYSTEM'
+            password = 'MANAGER'
+            database = 'db'
+            port = 5050
+            host = 'localhost'
 
-    logging.basicConfig(stream=sys.stdout)
-    log = logging.getLogger()
-    log.setLevel(logging.DEBUG)
+            logging.basicConfig(stream=sys.stdout)
+            log = logging.getLogger()
+            log.setLevel(logging.DEBUG)
 
-    conn = protocol.SednaProtocol(host, database, username, password, trace=True)
+            conn = protocol.SednaProtocol(host, database, username, password, trace=True)
 
-    docs = conn.documents
+            docs = conn.documents
 
-    query = u'<bib> {for $h in doc("bib")//publisher return <item> {$h} {for $b in doc("bib")//publisher where $b=$h return $b/../title} </item>}</bib>'
+            conn.loadFile('bib.xml', 'bib')
 
-    if 'bib' not in docs:
-        conn.loadFile('bib.xml', 'bib')
+            xqry = request.POST.get('xquery')
 
-    begat_verses = conn.query(query)
-    print begat_verses.time
-    conn.traceOff()
-    count = 0
-    for k in begat_verses:
-        count += 1
-        # z = fromstring(k)
-        # print count,z.text.strip()
-        print count, k.strip()
-    conn.commit()
-    conn.close()
+            begat_verses = conn.query(xqry)
+            conn.traceOff()
+            count = 0
+            for k in begat_verses:
+                count += 1
+                # z = fromstring(k)
+                # print count,z.text.strip()
+                output += count + k.strip() + "\n"
+            conn.commit()
+            conn.close()
+            messages.success(request, "Kontsulta zuzen egin da. Denbora:{d} Emaitza:".format(d=begat_verses.time))
+        except:
+            messages.error(request, "Errorea kontsulta egitean")
 
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return render(request, 'xquery.html', {"output": output})

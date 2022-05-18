@@ -1,0 +1,33 @@
+<html>
+        <head>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+            <title>Lan Osagarria</title>
+                <style>
+                .title {
+                    color: forestgreen;
+                }
+            </style>
+        </head>
+
+<body>
+    <div class="container">
+        <h1 id="title" class="title">Django + XQUERY</h1>
+        <br />
+        <div class="row">
+            <div id="sidebar" class="col-2">
+                <h3>Aukerak</h3>
+                <ul>
+                    <li><a href="http://localhost:59152/liburuakIkusi/">Liburu guztiak ikusi</a></li>
+                    <li><a href="http://localhost:59152/liburuakSortu/">Liburua sortu</a></li>
+                    <li><a href="#">XQuery kontsulak egin</a></li>
+                </ul>
+            </div>
+
+            <div id="edukia" class="col-10">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
