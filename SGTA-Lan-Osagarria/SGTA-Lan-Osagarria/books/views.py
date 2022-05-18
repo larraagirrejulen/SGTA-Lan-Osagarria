@@ -47,9 +47,6 @@ def liburuakSortu(request):
         editor = request.POST.get('editor')
         publisher = request.POST.get('publisher')
         price = request.POST.get('price')
-        #liburua=Filma.objects.get(izenburua=filmaIzena)
-
-
 
         lib = Book(id,year,title,last,first,editor,publisher,price)
         lib.save()
