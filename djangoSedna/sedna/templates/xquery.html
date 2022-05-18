@@ -4,19 +4,13 @@
     <h1>XQuery kontsultak egin</h1>
     <form method="POST">
         <div class="xquery-kontsulta">
-            <table>
-                <tbody>
-                    <tr>
-                        <td><label class="form-label">XQuery kontsulta</label></td>
-                        <td><textarea class="form-control" name="xquery"></textarea></td>
-                    </tr>
-                </tbody>
-            </table>
+            <label class="form-label">XQuery kontsulta (doc('bib') erabili fitxategia atzitzeko)</label> <br>
+            <textarea class="form-control" name="xquery" style="min-width: 80%; min-height: 80%"></textarea>
             
             {% csrf_token %}
             <button class="liburua_sortu btn btn-success" type="submit">Kontsulta egin</button>
         </div>
     </form>
     {% include 'messages.html' %}
-    <textarea>{{ output }}</textarea>
+    <textarea style="min-width: 80%; min-height: 80%">{{ output }}</textarea>
 {% endblock %}

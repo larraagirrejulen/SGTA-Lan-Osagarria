@@ -15,8 +15,7 @@ def index(request):
         try:
             username = 'SYSTEM'
             password = 'MANAGER'
-            database = 'db'
-            port = 5050
+            database = 'sdb'
             host = 'localhost'
 
             logging.basicConfig(stream=sys.stdout)
@@ -27,22 +26,20 @@ def index(request):
 
             docs = conn.documents
 
-            conn.loadFile('bib.xml', 'bib')
-
-            xqry = request.POST.get('xquery')
+            i = 0
+            while "bib"+str(i) in docs:
+                i += 1
+            conn.loadFile('bib.xml', "bib"+str(i))
+            xqry = request.POST.get('xquery').replace("doc('bib')", "doc('bib" + str(i) + "')").replace('doc("bib")', 'doc("bib' + str(i) + '")')
 
             begat_verses = conn.query(xqry)
             conn.traceOff()
-            count = 0
             for k in begat_verses:
-                count += 1
-                # z = fromstring(k)
-                # print count,z.text.strip()
-                output += count + k.strip() + "\n"
+                output += k.strip() + "\n"
             conn.commit()
             conn.close()
-            messages.success(request, "Kontsulta zuzen egin da. Denbora:{d} Emaitza:".format(d=begat_verses.time))
+            messages.success(request, "Kontsulta zuzen egin da.")
         except:
-            messages.error(request, "Errorea kontsulta egitean")
+            messages.error(request, "Errorea kontsulta egitean. Gogoratu kontsulta doc('bib') erabiltzea eta ez doc('bib.xml')")
 
     return render(request, 'xquery.html', {"output": output})
