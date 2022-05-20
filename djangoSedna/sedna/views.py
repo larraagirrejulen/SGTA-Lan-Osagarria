@@ -29,7 +29,7 @@ def index(request):
             i = 0
             while "bib"+str(i) in docs:
                 i += 1
-            conn.loadFile('bib.xml', "bib"+str(i))
+            conn.loadFile('../SGTA-Lan-Osagarria/SGTA-Lan-Osagarria/file.xml', "bib"+str(i))
             xqry = request.POST.get('xquery').replace("doc('bib')", "doc('bib" + str(i) + "')").replace('doc("bib")', 'doc("bib' + str(i) + '")')
 
             begat_verses = conn.query(xqry)
